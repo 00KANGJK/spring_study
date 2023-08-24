@@ -1,31 +1,30 @@
 package com.example.study.service;
 
 import com.example.study.domain.Member;
+import com.example.study.repository.MemberRepository;
 import com.example.study.repository.MemoryMemberRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-class MemberServiceTest {
-    MemberService memberService;
-    MemoryMemberRepository memberRepository;
-    @BeforeEach
-    public void beforEach(){
-        memberRepository = new MemoryMemberRepository();
-        memberService = new MemberService(memberRepository);
-    }
-    @AfterEach
-    public void afterEach(){
-        memberRepository.clearStore();
-    }
+@SpringBootTest
+@Transactional
+class MemberServiceIntegrationTest {
+    @Autowired MemberService memberService;
+    @Autowired
+    MemberRepository memberRepository;
+
     @Test
     void 회원가입() {
         //given
         Member member = new Member();
-        member.setName("spring");
+        member.setName("spring1");
         //when
         Long saveID = memberService.join(member);
         //then
@@ -51,13 +50,5 @@ class MemberServiceTest {
 //            Assertions.assertEquals(e.getMessage(),"이미 존재하는 회원입니다.");
 //        }
         //then
-    }
-
-    @Test
-    void findMembers() {
-    }
-
-    @Test
-    void findOne() {
     }
 }
