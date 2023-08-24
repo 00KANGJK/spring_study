@@ -11,10 +11,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @SpringBootTest
-@Transactional
+@Transactional // test를 위해 넣은 data는 db에 영향을 안준다.
 class MemberServiceIntegrationTest {
     @Autowired MemberService memberService;
     @Autowired
@@ -36,19 +38,14 @@ class MemberServiceIntegrationTest {
     void 중복_회원_검사(){
         //given
         Member member1 = new Member();
-        member1.setName("spring");
+        member1.setName("spring2");
 
         Member member2 = new Member();
-        member2.setName("spring");
+        member2.setName("spring2");
         //when
         memberService.join(member1);
-        assertThrows(IllegalStateException.class, () -> memberService.join(member2));
-//        try {
-//            memberService.join(member2);
-//            fail();
-//        }catch (IllegalStateException e){
-//            Assertions.assertEquals(e.getMessage(),"이미 존재하는 회원입니다.");
-//        }
-        //then
+        IllegalStateException e = assertThrows(IllegalStateException.class,
+                () -> memberService.join(member2));//예외가 발생해야 한다.
+        assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
     }
 }
