@@ -28,6 +28,7 @@ public class MemoryMemberRepository implements MemberRepository{
                 .findAny(); // 같은 거 단 한개라도 가져오기
     }
 
+
     @Override
     public List<Member> findAll() {
         return new ArrayList<>(store.values());

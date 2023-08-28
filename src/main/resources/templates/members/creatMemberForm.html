@@ -7,8 +7,17 @@
 <body>
 <form action="/members/new" method="post">
   <div class="form-group">
-    <label for="name">이름</label>
-    <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+     <label for="name">이름</label>
+     <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
+      <label for="studentid">학번</label>
+      <input type="text" id="studentid" name="studentid" placeholder="학번을 입력하세요">
+      <label for="cname">캠프이름</label>
+      <input type="text" id="cname" name="cname" placeholder="캠프이름을 입력하세요">
+      <label for="department">학부</label>
+      <input type="text" id="department" name="department" placeholder="학부를 입력하세요">
+      <label for="startdate">캠프 기간</label>
+      <input type="date" id="startdate" name="startdate" placeholder="시작날짜">
+      <input type="date" id="enddate" name="enddate" placeholder="종료날짜">
   </div>
   <button type="submit">등록</button>
 </form>

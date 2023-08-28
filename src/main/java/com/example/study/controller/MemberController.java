@@ -28,6 +28,11 @@ public class MemberController {
     public String create(MemberForm form){
         Member member = new Member();
         member.setName(form.getName());
+        member.setStudentid(form.getStudentid());
+        member.setCname(form.getCname());
+        member.setDepartment(form.getDepartment());
+        member.setStartdate(form.getStartdate());
+        member.setEnddate(form.getEnddate());
 
         memberService.join(member);
 
@@ -38,6 +43,7 @@ public class MemberController {
     public String list(Model model){
         List<Member> members = memberService.findMembers();
         model.addAttribute("members",members);
+
         return "members/memberList";
     }
 }
