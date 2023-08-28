@@ -18,8 +18,9 @@ public class HomeCoontroller {
     }
 
     @GetMapping("/")
-    public String home(){
-
+    public String home(Model model){
+        List<Member> members = memberService.findMembers();
+        model.addAttribute("members",members);
         return "home";
     }
 }

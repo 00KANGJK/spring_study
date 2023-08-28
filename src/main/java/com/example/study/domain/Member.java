@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -16,7 +17,9 @@ public class Member {
     private String studentid;
     private String department;
     private String cname;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startdate;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date enddate;
 
     public Date getStartdate() {

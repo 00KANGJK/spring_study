@@ -1,7 +1,12 @@
 plugins {
     id 'java'
+    id 'war'
     id 'org.springframework.boot' version '3.1.2'
     id 'io.spring.dependency-management' version '1.1.2'
+}
+
+bootWar {
+    enabled = true
 }
 
 group = 'com.example'
@@ -18,7 +23,6 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-//    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.apache.pdfbox:pdfbox:2.0.24'
     runtimeOnly 'com.h2database:h2'
